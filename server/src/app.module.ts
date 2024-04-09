@@ -17,8 +17,8 @@ import {ConfigModule} from "@nestjs/config";
       dialect: 'postgres',
       host: process.env.POSTGRES_HOST,
       port: Number(process.env.POSTGRES_PORT),
-      username: 'postgres',
-      password: 'root',
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
       models: [User],
       autoLoadModels: true

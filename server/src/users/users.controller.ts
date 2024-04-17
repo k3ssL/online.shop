@@ -13,6 +13,7 @@ export class UsersController {
     @ApiResponse({status: 200, type: User})
     @Post()
     create(@Body() userDto: CreateUserDto) {
-
+        const user = this.userService.createUser(userDto)
+        return user
     }
 }

@@ -6,6 +6,12 @@ import {UsersModule} from "./users/users.module";
 import {ConfigModule} from "@nestjs/config";
 import {Basket} from "./basket/basket.model";
 import {BasketDevice} from "./basketDevice/basketDevice.model";
+import {Device} from "./device/device.model";
+import {DeviceInfo} from "./deviceInfo/deviceInfo.model";
+import {Rating} from "./rating/rating.model";
+import {Type} from "./type/type.model";
+import {Brand} from "./brand/brand.model";
+import {TypeBrand} from "./typeBrand/typeBrand.module";
 
 
 @Module({
@@ -22,7 +28,7 @@ import {BasketDevice} from "./basketDevice/basketDevice.model";
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [User, Basket, BasketDevice],
+      models: [User, Basket, BasketDevice, Device, DeviceInfo, Rating, Type, Brand, TypeBrand],
       autoLoadModels: true
     }),
     UsersModule,

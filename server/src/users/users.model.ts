@@ -1,5 +1,6 @@
-import {Column, DataType, Model, Table} from "sequelize-typescript";
+import {Column, DataType, HasOne, Model, Table} from "sequelize-typescript";
 import {ApiProperty} from "@nestjs/swagger";
+import {Basket} from "../basket/basket.model";
 
 interface UserCreationAttrs {
     email: string;
@@ -24,4 +25,7 @@ export class User extends Model<User, UserCreationAttrs> {
     @ApiProperty({example: 'USER', description: 'User role'})
     @Column({type: DataType.STRING, allowNull: false, defaultValue: 'USER'})
     role: string
+
+    @HasOne(() => Basket)
+    basket: Basket
 }

@@ -15,7 +15,7 @@ export class Device extends Model<Device> {
     name: string
 
     @Column({type: DataType.INTEGER, allowNull: false})
-    price: string
+    price: number
 
     @Column({type: DataType.INTEGER, allowNull: false, defaultValue: 0})
     rating: number

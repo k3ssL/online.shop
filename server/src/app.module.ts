@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import {MiddlewareConsumer, Module, NestModule} from '@nestjs/common';
 import {SequelizeModule} from "@nestjs/sequelize";
 import * as process from "process";
 import {User} from "./users/users.model";
@@ -12,6 +12,10 @@ import {Rating} from "./rating/rating.model";
 import {Type} from "./type/type.model";
 import {Brand} from "./brand/brand.model";
 import {TypeBrand} from "./typeBrand/typeBrand.module";
+import {ApiErrorMiddleware} from "../middleware/api-error.middleware";
+import { TypeModule } from './type/type.module';
+import { BrandModule } from './brand/brand.module';
+import { DeviceModule } from './device/device.module';
 
 
 @Module({
@@ -32,6 +36,15 @@ import {TypeBrand} from "./typeBrand/typeBrand.module";
       autoLoadModels: true
     }),
     UsersModule,
+    TypeModule,
+    BrandModule,
+    DeviceModule,
   ],
 })
-export class AppModule {}
+export class AppModule  {
+  // configure(consumer: MiddlewareConsumer) {
+  //   consumer
+  //       .apply(ApiErrorMiddleware)
+  //       .forRoutes('*');
+  // }
+}

@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { Type } from "./type.model";
-import {CreateTypeDto} from "./dto/create-type.dto";
+import { Injectable } from "@nestjs/common"
+import { Type } from "./type.model"
+import { CreateTypeDto } from "./dto/create-type.dto"
 
 @Injectable()
 export class TypeService {

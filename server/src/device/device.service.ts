@@ -2,8 +2,8 @@ import { Injectable } from "@nestjs/common"
 import { CreateDeviceDto } from "./dto/create-device.dto"
 import { Device } from "./device.model"
 import { InjectModel } from "@nestjs/sequelize"
-import {GetAllDevicesDto} from "./dto/get-all-devices.dto";
-import {DeviceInfo} from "../deviceInfo/deviceInfo.model";
+import { GetAllDevicesDto } from "./dto/get-all-devices.dto"
+import { DeviceInfo } from "../deviceInfo/deviceInfo.model"
 
 @Injectable()
 export class DeviceService {
@@ -12,12 +12,12 @@ export class DeviceService {
     async create(dto: CreateDeviceDto, file: Express.Multer.File) {
         const device = await this.deviceRepository.create({ ...dto, img: file.filename })
         if (dto.info) {
-            dto.info.forEach(i =>
+            dto.info.forEach((i) =>
                 DeviceInfo.create({
                     title: i.title,
                     description: i.description,
-                    deviceId: device.id
-                })
+                    deviceId: device.id,
+                }),
             )
         }
         return device
@@ -33,15 +33,19 @@ export class DeviceService {
         }
 
         if (dto.brandId && !dto.typeId) {
-            devices = await this.deviceRepository.findAndCountAll({where: {brandId: dto.brandId}, limit, offset})
+            devices = await this.deviceRepository.findAndCountAll({ where: { brandId: dto.brandId }, limit, offset })
         }
 
         if (!dto.brandId && dto.typeId) {
-            devices = await this.deviceRepository.findAndCountAll({where: {typeId: dto.typeId}, limit, offset})
+            devices = await this.deviceRepository.findAndCountAll({ where: { typeId: dto.typeId }, limit, offset })
         }
 
         if (dto.brandId && dto.typeId) {
-            devices = await this.deviceRepository.findAndCountAll({where: {brandId: dto.brandId, typeId: dto.typeId}, limit, offset})
+            devices = await this.deviceRepository.findAndCountAll({
+                where: { brandId: dto.brandId, typeId: dto.typeId },
+                limit,
+                offset,
+            })
         }
 
         return devices
@@ -49,8 +53,8 @@ export class DeviceService {
 
     async getOne(id: number) {
         const device = await this.deviceRepository.findOne({
-            where: {id},
-            include: [{model: DeviceInfo, as: 'info'}]
+            where: { id },
+            include: [{ model: DeviceInfo, as: "info" }],
         })
         return device
     }

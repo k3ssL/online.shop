@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post, Query, UploadedFile, UseInterceptors} from "@nestjs/common"
+import {Body, Controller, Get, Param, Post, Query, UploadedFile, UseInterceptors} from "@nestjs/common"
 import { ApiBody, ApiConsumes, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
 import { DeviceService } from "./device.service"
 import { CreateDeviceDto } from "./dto/create-device.dto"
@@ -55,5 +55,13 @@ export class DeviceController {
     async getAll(@Query() getAllDeviceDto: GetAllDevicesDto) {
         const devices = await this.deviceService.getAll(getAllDeviceDto)
         return devices
+    }
+
+    @ApiOperation({ summary: "Get device" })
+    @ApiResponse({ status: 200, type: Device })
+    @Get(':id')
+    async getOne(@Param('id') id: number) {
+        const device = await this.deviceService.getOne(id)
+        return device
     }
 }

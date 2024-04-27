@@ -3,6 +3,7 @@ import { CreateDeviceDto } from "./dto/create-device.dto"
 import { Device } from "./device.model"
 import { InjectModel } from "@nestjs/sequelize"
 import {GetAllDevicesDto} from "./dto/get-all-devices.dto";
+import {DeviceInfo} from "../deviceInfo/deviceInfo.model";
 
 @Injectable()
 export class DeviceService {
@@ -10,6 +11,15 @@ export class DeviceService {
 
     async create(dto: CreateDeviceDto, file: Express.Multer.File) {
         const device = await this.deviceRepository.create({ ...dto, img: file.filename })
+        if (dto.info) {
+            dto.info.forEach(i =>
+                DeviceInfo.create({
+                    title: i.title,
+                    description: i.description,
+                    deviceId: device.id
+                })
+            )
+        }
         return device
     }
 
@@ -35,5 +45,13 @@ export class DeviceService {
         }
 
         return devices
+    }
+
+    async getOne(id: number) {
+        const device = await this.deviceRepository.findOne({
+            where: {id},
+            include: [{model: DeviceInfo, as: 'info'}]
+        })
+        return device
     }
 }

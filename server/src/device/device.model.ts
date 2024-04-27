@@ -43,5 +43,5 @@ export class Device extends Model<Device> {
     basketDevice: BasketDevice[]
 
     @HasMany(() => DeviceInfo)
-    basketInfo: DeviceInfo[]
+    info: DeviceInfo[]
 }

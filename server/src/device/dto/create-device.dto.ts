@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger"
 import { IsNumber, IsString } from "class-validator"
+import {DeviceInfo} from "../../deviceInfo/deviceInfo.model";
 
 export class CreateDeviceDto {
     @ApiProperty({ example: "Samsung", description: "Device name" })
@@ -20,7 +21,7 @@ export class CreateDeviceDto {
 
     @ApiProperty({ example: "Samsung", description: "Product brand" })
     @IsString({ message: "Must be a string" })
-    readonly info: string
+    info: DeviceInfo[]
 
     @ApiProperty({ example: "Samsung", description: "Product brand" })
     readonly img: string

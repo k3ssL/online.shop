@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common"
+import { MiddlewareConsumer, Module } from "@nestjs/common"
 import { SequelizeModule } from "@nestjs/sequelize"
 import * as process from "process"
 import { User } from "./users/users.model"
@@ -16,6 +16,7 @@ import { ApiErrorMiddleware } from "../middleware/api-error.middleware"
 import { TypeModule } from "./type/type.module"
 import { BrandModule } from "./brand/brand.module"
 import { DeviceModule } from "./device/device.module"
+import { AuthMiddleware } from "../middleware/auth.middleware";
 
 @Module({
     controllers: [],
@@ -41,9 +42,9 @@ import { DeviceModule } from "./device/device.module"
     ],
 })
 export class AppModule {
-    // configure(consumer: MiddlewareConsumer) {
-    //   consumer
-    //       .apply(ApiErrorMiddleware)
-    //       .forRoutes('*');
-    // }
+    configure(consumer: MiddlewareConsumer) {
+      consumer
+          .apply(ApiErrorMiddleware, AuthMiddleware)
+          .forRoutes('*');
+    }
 }

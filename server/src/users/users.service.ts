@@ -1,16 +1,27 @@
 import { Injectable } from "@nestjs/common"
 import { User } from "./users.model"
 import { InjectModel } from "@nestjs/sequelize"
-import { CreateUserDto } from "./dto/create-user.dto"
+import { UserDto } from "./dto/user.dto"
 import * as bcrypt from "bcrypt"
+import * as jwt from "jsonwebtoken"
 import { Basket } from "../basket/basket.model"
 import { ApiError } from "error/ApiError"
+import * as process from "process";
+
+
+const generateJwt = (id: number, email: string, role: string) => {
+    return jwt.sign(
+        {id: id, email: email, role: role},
+        process.env.PRIVATE_KEY,
+        {expiresIn: '24h'}
+    )
+}
 
 @Injectable()
 export class UsersService {
     constructor(@InjectModel(User) private userRepository: typeof User) {}
 
-    async createUser(dto: CreateUserDto) {
+    async registration(dto: UserDto) {
         if (!dto.email || !dto.password) {
             return ApiError.badRequest("Invalid email or password")
         }
@@ -18,9 +29,23 @@ export class UsersService {
         if (candidate) {
             return ApiError.badRequest("User already exists")
         }
-        const hashPassword = await bcrypt.hash(dto.password)
-        const user = await User.create(dto)
-        const basket = await Basket.create(user.id)
-        return user
+        const hashPassword = await bcrypt.hash(dto.password, 5)
+        const user = await User.create({...dto, password: hashPassword})
+        const basket = await Basket.create({userId: user.id})
+        const token = generateJwt(user.id, dto.email, dto.role)
+        return token
+    }
+
+    async login(dto: UserDto) {
+        const user = await this.userRepository.findOne({where: {email: dto.email}})
+        if (!user) {
+            return ApiError.badRequest("User was not found")
+        }
+        let comparePassword = bcrypt.compareSync(dto.password, user.password)
+        if (!comparePassword) {
+            return ApiError.badRequest("Incorrect password")
+        }
+        const token = generateJwt(user.id, dto.email, dto.role)
+        return token
     }
 }

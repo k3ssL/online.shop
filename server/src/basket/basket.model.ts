@@ -9,7 +9,7 @@ export class Basket extends Model<Basket> {
 
     @ForeignKey(() => User)
     @Column({ type: DataType.INTEGER, allowNull: false })
-    userId: string
+    userId: number
 
     @BelongsTo(() => User)
     user: User

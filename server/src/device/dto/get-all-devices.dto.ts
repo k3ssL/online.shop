@@ -10,4 +10,12 @@ export class GetAllDevicesDto {
     @IsNumber({}, { message: "Must be a number" })
     readonly typeId: number
 
+    @ApiProperty({ example: "1", description: "Limit", required: false })
+    @IsNumber({}, { message: "Must be a number" })
+    readonly limit: number
+
+    @ApiProperty({ example: "1", description: "Page", required: false })
+    @IsNumber({}, { message: "Must be a number" })
+    readonly page: number
+
 }

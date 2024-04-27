@@ -17,6 +17,6 @@ const normalizeFileName = (
 }
 
 export const fileStorage = diskStorage({
-    destination: "src/static",
+    destination: "./static",
     filename: normalizeFileName,
 })

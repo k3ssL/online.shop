@@ -48,4 +48,10 @@ export class UsersService {
         const token = generateJwt(user.id, dto.email, dto.role)
         return token
     }
+
+    async findById(id: number) {
+        return this.userRepository.findOne({
+            where: { id },
+        })
+    }
 }

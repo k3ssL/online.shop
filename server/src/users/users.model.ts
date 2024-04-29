@@ -28,3 +28,8 @@ export class User extends Model<User, UserCreationAttrs> {
     @HasOne(() => Basket)
     basket: Basket
 }
+
+export enum UserRoleEnum {
+    User = 'USER',
+    Admin = 'ADMIN'
+}

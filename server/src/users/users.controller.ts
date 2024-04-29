@@ -1,9 +1,9 @@
 import { Body, Controller, Post } from "@nestjs/common"
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
 import { UsersService } from "./users.service"
-import { User } from "./users.model"
-import { UserDto } from "./dto/user.dto"
+import { CreateUserDto } from "./dto/create-user.dto"
 import {Token} from "../token/token.module";
+import {LoginDto} from "./dto/login.dto";
 
 @ApiTags("Users")
 @Controller("users")
@@ -13,7 +13,7 @@ export class UsersController {
     @ApiOperation({ summary: "Create user" })
     @ApiResponse({ status: 200, type: Token })
     @Post('/registration')
-    async registration(@Body() userDto: UserDto) {
+    async registration(@Body() userDto: CreateUserDto) {
         const token = await this.userService.registration(userDto)
         return token
     }
@@ -21,7 +21,7 @@ export class UsersController {
     @ApiOperation({ summary: "Login" })
     @ApiResponse({ status: 200, type: Token })
     @Post('/login')
-    async login(@Body() userDto: UserDto) {
+    async login(@Body() userDto: LoginDto) {
         const token = await this.userService.login(userDto)
         return token
     }

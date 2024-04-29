@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common"
-import { Type } from "./type.model"
+import { Type } from "../models/type.model"
 import { CreateTypeDto } from "./dto/create-type.dto"
 
 @Injectable()

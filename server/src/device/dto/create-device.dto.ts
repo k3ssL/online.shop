@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger"
 import { IsNumber, IsString } from "class-validator"
-import { DeviceInfo } from "../../deviceInfo/deviceInfo.model"
+import { DeviceInfo } from "src/models/deviceInfo.model"
 
 export class CreateDeviceDto {
     @ApiProperty({ example: "Samsung", description: "Device name" })

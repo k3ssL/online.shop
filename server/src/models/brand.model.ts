@@ -1,6 +1,6 @@
 import { BelongsToMany, Column, DataType, Model, Table } from "sequelize-typescript"
-import { TypeBrand } from "../typeBrand/typeBrand.module"
-import { Type } from "../type/type.model"
+import { TypeBrand } from "./typeBrand.model"
+import { Type } from "./type.model"
 import { ApiProperty } from "@nestjs/swagger"
 
 @Table({ tableName: "brand" })

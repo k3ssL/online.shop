@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post } from "@nestjs/common"
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
 import { TypeService } from "./type.service"
-import { Type } from "./type.model"
+import { Type } from "../models/type.model"
 import { CreateTypeDto } from "./dto/create-type.dto"
 
 @ApiTags("Type")

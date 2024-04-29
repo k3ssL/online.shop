@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript"
-import { User } from "../users/users.model"
-import { BasketDevice } from "../basketDevice/basketDevice.model"
+import { User } from "./users.model"
+import { BasketDevice } from "./basketDevice.model"
 
 @Table({ tableName: "basket" })
 export class Basket extends Model<Basket> {

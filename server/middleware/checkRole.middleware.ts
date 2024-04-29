@@ -1,7 +1,7 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Response, NextFunction } from 'express';
-import {ExpressRequestInterface} from "./auth.middleware";
-import {verifyToken} from "../utils/verifyToken.utils";
+import { ExpressRequestInterface } from "./auth.middleware";
+import { verifyToken } from "../utils/verifyToken.utils";
 
 @Injectable()
 export class CheckRoleMiddleware implements NestMiddleware {

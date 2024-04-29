@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common"
 import { CreateDeviceDto } from "./dto/create-device.dto"
-import { Device } from "./device.model"
+import { Device } from "../models/device.model"
 import { InjectModel } from "@nestjs/sequelize"
 import { GetAllDevicesDto } from "./dto/get-all-devices.dto"
-import { DeviceInfo } from "../deviceInfo/deviceInfo.model"
+import { DeviceInfo } from "../models/deviceInfo.model"
 
 @Injectable()
 export class DeviceService {

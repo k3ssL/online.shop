@@ -1,6 +1,6 @@
 import { Column, DataType, HasOne, Model, Table } from "sequelize-typescript"
 import { ApiProperty } from "@nestjs/swagger"
-import { Basket } from "../basket/basket.model"
+import { Basket } from "./basket.model"
 
 interface UserCreationAttrs {
     email: string

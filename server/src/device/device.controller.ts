@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post, Query, UploadedFile, UseInterceptor
 import { ApiBody, ApiConsumes, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
 import { DeviceService } from "./device.service"
 import { CreateDeviceDto } from "./dto/create-device.dto"
-import { Device } from "./device.model"
+import { Device } from "../models/device.model"
 import { FileInterceptor } from "@nestjs/platform-express"
 import { fileStorage } from "./storage"
 import { GetAllDevicesDto } from "./dto/get-all-devices.dto"

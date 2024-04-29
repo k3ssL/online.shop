@@ -1,6 +1,6 @@
 import { Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript"
-import { Type } from "../type/type.model"
-import { Brand } from "../brand/brand.model"
+import { Type } from "./type.model"
+import { Brand } from "./brand.model"
 
 @Table({ tableName: "type_brand" })
 export class TypeBrand extends Model<TypeBrand> {

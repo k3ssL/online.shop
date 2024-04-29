@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from "@nestjs/common"
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
-import { Brand } from "./brand.model"
+import { Brand } from "../models/brand.model"
 import { CreateBrandDto } from "./dto/create-brand.dto"
 import { BrandService } from "./brand.service"
 

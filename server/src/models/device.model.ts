@@ -1,9 +1,9 @@
 import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript"
-import { Brand } from "../brand/brand.model"
-import { Type } from "../type/type.model"
-import { Rating } from "../rating/rating.model"
-import { BasketDevice } from "../basketDevice/basketDevice.model"
-import { DeviceInfo } from "../deviceInfo/deviceInfo.model"
+import { Brand } from "./brand.model"
+import { Type } from "./type.model"
+import { Rating } from "./rating.model"
+import { BasketDevice } from "./basketDevice.model"
+import { DeviceInfo } from "./deviceInfo.model"
 import { ApiProperty } from "@nestjs/swagger"
 
 @Table({ tableName: "device" })

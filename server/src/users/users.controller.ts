@@ -6,7 +6,7 @@ import {Token} from "../token/token.module";
 import {LoginDto} from "./dto/login.dto";
 
 @ApiTags("Users")
-@Controller("users")
+@Controller("")
 export class UsersController {
     constructor(private userService: UsersService) {}
 
@@ -15,7 +15,7 @@ export class UsersController {
     @Post('/registration')
     async registration(@Body() userDto: CreateUserDto) {
         const token = await this.userService.registration(userDto)
-        return token
+        return {token: token}
     }
 
     @ApiOperation({ summary: "Login" })
@@ -23,6 +23,6 @@ export class UsersController {
     @Post('/login')
     async login(@Body() userDto: LoginDto) {
         const token = await this.userService.login(userDto)
-        return token
+        return {token: token}
     }
 }

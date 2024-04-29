@@ -1,14 +1,8 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
-import * as jwt from 'jsonwebtoken';
 import {User} from "../src/users/users.model";
-import {JwtPayload} from "jsonwebtoken";
 import {UsersService} from "../src/users/users.service";
-
-
-export interface JwtResponseInterface extends JwtPayload {
-    id: number
-}
+import {verifyToken} from "../utils/auth.utils";
 
 export interface ExpressRequestInterface extends Request {
     user?: User
@@ -24,17 +18,13 @@ export class AuthMiddleware implements NestMiddleware {
             return
         }
 
-        try {
-            const token = req.headers.authorization.split(' ')[1];
-            if (!token) {
-                return res.status(401).json({ message: 'Not authorized' }) 
-            }
-            const decoded = jwt.verify(token, process.env.PRIVATE_KEY) as JwtResponseInterface
-            const user = await this.usersService.findById(decoded.id);
-            req.user = user
-            next()
-        } catch (e) {
-            res.status(401).json({ message: 'Not authorized' })
+        const decoded = verifyToken(req);
+        if (!decoded) {
+            return res.status(401).json({ message: 'Not authorized' })
         }
+
+        const user = await this.usersService.findById(decoded.id);
+        req.user = user
+        next()
     }
 }

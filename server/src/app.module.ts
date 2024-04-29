@@ -12,11 +12,11 @@ import { Rating } from "./rating/rating.model"
 import { Type } from "./type/type.model"
 import { Brand } from "./brand/brand.model"
 import { TypeBrand } from "./typeBrand/typeBrand.module"
-import { ApiErrorMiddleware } from "../middleware/api-error.middleware"
 import { TypeModule } from "./type/type.module"
 import { BrandModule } from "./brand/brand.module"
 import { DeviceModule } from "./device/device.module"
-import { AuthMiddleware } from "../middleware/auth.middleware";
+import { AuthMiddleware } from "../middleware/auth.middleware"
+import { CheckRoleMiddleware } from "../middleware/checkRole.middleware"
 
 @Module({
     controllers: [],
@@ -43,8 +43,6 @@ import { AuthMiddleware } from "../middleware/auth.middleware";
 })
 export class AppModule {
     configure(consumer: MiddlewareConsumer) {
-      consumer
-          .apply(ApiErrorMiddleware, AuthMiddleware)
-          .forRoutes('*');
+        consumer.apply(AuthMiddleware, CheckRoleMiddleware).forRoutes("type", "brand", "device")
     }
 }

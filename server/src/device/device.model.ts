@@ -4,7 +4,7 @@ import { Type } from "../type/type.model"
 import { Rating } from "../rating/rating.model"
 import { BasketDevice } from "../basketDevice/basketDevice.model"
 import { DeviceInfo } from "../deviceInfo/deviceInfo.model"
-import {ApiProperty} from "@nestjs/swagger";
+import { ApiProperty } from "@nestjs/swagger"
 
 @Table({ tableName: "device" })
 export class Device extends Model<Device> {

@@ -6,16 +6,11 @@ import * as bcrypt from "bcrypt"
 import * as jwt from "jsonwebtoken"
 import { Basket } from "../basket/basket.model"
 import { ApiError } from "error/ApiError"
-import * as process from "process";
-import {LoginDto} from "./dto/login.dto";
-
+import * as process from "process"
+import { LoginDto } from "./dto/login.dto"
 
 const generateJwt = (id: number, email: string, role?: string) => {
-    return jwt.sign(
-        {id: id, email: email, role: role},
-        process.env.PRIVATE_KEY,
-        {expiresIn: '24h'}
-    )
+    return jwt.sign({ id: id, email: email, role: role }, process.env.PRIVATE_KEY, { expiresIn: "24h" })
 }
 
 @Injectable()
@@ -31,14 +26,14 @@ export class UsersService {
             return ApiError.badRequest("User already exists")
         }
         const hashPassword = await bcrypt.hash(dto.password, 5)
-        const user = await User.create({...dto, password: hashPassword})
-        const basket = await Basket.create({userId: user.id})
+        const user = await User.create({ ...dto, password: hashPassword })
+        const basket = await Basket.create({ userId: user.id })
         const token = generateJwt(user.id, dto.email, user.role)
         return token
     }
 
     async login(dto: LoginDto) {
-        const user = await this.userRepository.findOne({where: {email: dto.email}})
+        const user = await this.userRepository.findOne({ where: { email: dto.email } })
         if (!user) {
             return ApiError.badRequest("User was not found")
         }
@@ -46,7 +41,7 @@ export class UsersService {
         if (!comparePassword) {
             return ApiError.badRequest("Incorrect password")
         }
-        const token = generateJwt(user.id, dto.email)
+        const token = generateJwt(user.id, dto.email, user.role)
         return token
     }
 

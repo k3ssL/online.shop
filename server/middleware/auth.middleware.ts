@@ -2,7 +2,7 @@ import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import {User} from "../src/users/users.model";
 import {UsersService} from "../src/users/users.service";
-import {verifyToken} from "../utils/auth.utils";
+import {verifyToken} from "../utils/verifyToken.utils";
 
 export interface ExpressRequestInterface extends Request {
     user?: User

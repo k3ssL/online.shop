@@ -30,6 +30,6 @@ export class User extends Model<User, UserCreationAttrs> {
 }
 
 export enum UserRoleEnum {
-    User = 'USER',
-    Admin = 'ADMIN'
+    User = "USER",
+    Admin = "ADMIN",
 }

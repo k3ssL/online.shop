@@ -33,7 +33,7 @@ export class UsersService {
         const hashPassword = await bcrypt.hash(dto.password, 5)
         const user = await User.create({...dto, password: hashPassword})
         const basket = await Basket.create({userId: user.id})
-        const token = generateJwt(user.id, dto.email)
+        const token = generateJwt(user.id, dto.email, user.role)
         return token
     }
 

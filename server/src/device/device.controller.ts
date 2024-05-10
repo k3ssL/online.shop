@@ -50,7 +50,7 @@ export class DeviceController {
     }
 
     @ApiOperation({ summary: "Get all devices" })
-    @ApiResponse({ status: 200, type: Device })
+    @ApiResponse({ status: 200, type: Device, isArray: true})
     @Get()
     async getAll(@Query() getAllDeviceDto: GetAllDevicesDto) {
         const devices = await this.deviceService.getAll(getAllDeviceDto)

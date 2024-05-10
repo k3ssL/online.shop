@@ -52,7 +52,7 @@ export default class DeviceStore {
         this._selectedType = type
     }
 
-    setSelectedDevice(brand: BrandDto) {
+    setSelectedBrand(brand: BrandDto) {
         this._selectedBrand = brand
     }
 

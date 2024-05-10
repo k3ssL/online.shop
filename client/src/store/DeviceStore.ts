@@ -8,7 +8,7 @@ export default class DeviceStore {
     private _brands: BrandDto[]
     private _devices: DeviceDto[]
     private _selectedType: TypeDto
-    private _selectedDevice: DeviceDto
+    private _selectedBrand: BrandDto
 
     constructor() {
         this._types = [
@@ -31,7 +31,7 @@ export default class DeviceStore {
         ]
 
         this._selectedType = {} as TypeDto
-        this._selectedDevice = {} as DeviceDto
+        this._selectedBrand = {} as DeviceDto
 
         makeAutoObservable(this)
     }
@@ -52,8 +52,8 @@ export default class DeviceStore {
         this._selectedType = type
     }
 
-    setSelectedDevice(device: DeviceDto) {
-        this._selectedDevice = device
+    setSelectedDevice(brand: BrandDto) {
+        this._selectedBrand = brand
     }
 
     get types() {
@@ -72,7 +72,7 @@ export default class DeviceStore {
         return this._selectedType
     }
 
-    get selectedDevice() {
-        return this._selectedDevice
+    get selectedBrand() {
+        return this._selectedBrand
     }
 }

@@ -8,7 +8,7 @@ const BrandBar = observer(() => {
     const {device} = useContext(Context)
 
     return (
-        <Row className='d-flex'>
+        <Row className='d-flex flex-nowrap' style={{width:"20%"}}>
             {device.brands.map((brand: BrandDto) => (
                 <Card key={brand.id}
                       className='p-3'

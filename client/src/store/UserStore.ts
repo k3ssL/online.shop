@@ -1,12 +1,12 @@
-import {makeAutoObservable} from "mobx";
-import {UserDto} from "../entities/User/models/dto/UserDto";
+import { makeAutoObservable } from "mobx"
+import { UserDto } from "../entities/User/models/dto/UserDto"
 
 export default class UserStore {
     private _isAuth: boolean
     private _user: UserDto
 
     constructor() {
-        this._isAuth = false
+        this._isAuth = true
         this._user = {} as UserDto
         makeAutoObservable(this)
     }

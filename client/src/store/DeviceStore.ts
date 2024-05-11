@@ -1,7 +1,7 @@
-import {makeAutoObservable} from "mobx";
-import {TypeDto} from "../entities/Type/models/dto/TypeDto";
-import {BrandDto} from "../entities/Brand/models/dto/BrandDto";
-import {DeviceDto} from "../entities/Device/models/dto/DeviceDto";
+import { makeAutoObservable } from "mobx"
+import { TypeDto } from "../entities/Type/models/dto/TypeDto"
+import { BrandDto } from "../entities/Brand/models/dto/BrandDto"
+import { DeviceDto } from "../entities/Device/models/dto/DeviceDto"
 
 export default class DeviceStore {
     private _types: TypeDto[]
@@ -12,22 +12,92 @@ export default class DeviceStore {
 
     constructor() {
         this._types = [
-            {id: 1, name: 'Холодильники'},
-            {id: 2, name: 'Смартфоны'},
-            {id: 3, name: 'Ноутбуки'},
-            {id: 4, name: 'Телевизоры'},
+            { id: 1, name: "Холодильники" },
+            { id: 2, name: "Смартфоны" },
+            { id: 3, name: "Ноутбуки" },
+            { id: 4, name: "Телевизоры" },
         ]
 
         this._brands = [
-            {id: 1, name: 'Samsung'},
-            {id: 2, name: 'Apple'}
+            { id: 1, name: "Samsung" },
+            { id: 2, name: "Apple" },
+            { id: 3, name: "Lenovo" },
+            { id: 4, name: "Asus" },
         ]
 
         this._devices = [
-            {id: 1, name: 'Iphone 12 pro', price: 25000, rating: 5, brandId: 1, typeId: 2, img: "https://cdn1.ozone.ru/s3/multimedia-n/6069408023.jpg"},
-            {id: 2, name: 'Iphone 12 pro', price: 25000, rating: 5, brandId: 1, typeId: 2, img: "https://cdn1.ozone.ru/s3/multimedia-n/6069408023.jpg"},
-            {id: 3, name: 'Iphone 12 pro', price: 25000, rating: 5, brandId: 1, typeId: 2, img: "https://cdn1.ozone.ru/s3/multimedia-n/6069408023.jpg"},
-            {id: 4, name: 'Iphone 12 pro', price: 25000, rating: 5, brandId: 1, typeId: 2, img: "https://cdn1.ozone.ru/s3/multimedia-n/6069408023.jpg"},
+            {
+                id: 1,
+                name: "Iphone 12 pro",
+                price: 25000,
+                rating: 5,
+                brandId: 1,
+                typeId: 2,
+                img: "https://cdn1.ozone.ru/s3/multimedia-n/6069408023.jpg",
+            },
+            {
+                id: 2,
+                name: "Iphone 12 pro",
+                price: 25000,
+                rating: 5,
+                brandId: 1,
+                typeId: 2,
+                img: "https://cdn1.ozone.ru/s3/multimedia-n/6069408023.jpg",
+            },
+            {
+                id: 3,
+                name: "Iphone 12 pro",
+                price: 25000,
+                rating: 5,
+                brandId: 1,
+                typeId: 2,
+                img: "https://cdn1.ozone.ru/s3/multimedia-n/6069408023.jpg",
+            },
+            {
+                id: 4,
+                name: "Iphone 12 pro",
+                price: 25000,
+                rating: 5,
+                brandId: 1,
+                typeId: 2,
+                img: "https://cdn1.ozone.ru/s3/multimedia-n/6069408023.jpg",
+            },
+            {
+                id: 5,
+                name: "Iphone 12 pro",
+                price: 25000,
+                rating: 5,
+                brandId: 1,
+                typeId: 2,
+                img: "https://cdn1.ozone.ru/s3/multimedia-n/6069408023.jpg",
+            },
+            {
+                id: 6,
+                name: "Iphone 12 pro",
+                price: 25000,
+                rating: 5,
+                brandId: 1,
+                typeId: 2,
+                img: "https://cdn1.ozone.ru/s3/multimedia-n/6069408023.jpg",
+            },
+            {
+                id: 7,
+                name: "Iphone 12 pro",
+                price: 25000,
+                rating: 5,
+                brandId: 1,
+                typeId: 2,
+                img: "https://cdn1.ozone.ru/s3/multimedia-n/6069408023.jpg",
+            },
+            {
+                id: 8,
+                name: "Iphone 12 pro",
+                price: 25000,
+                rating: 5,
+                brandId: 1,
+                typeId: 2,
+                img: "https://cdn1.ozone.ru/s3/multimedia-n/6069408023.jpg",
+            },
         ]
 
         this._selectedType = {} as TypeDto
@@ -40,9 +110,9 @@ export default class DeviceStore {
         this._types = types
     }
 
-   setBrands(brands: BrandDto[]) {
+    setBrands(brands: BrandDto[]) {
         this._brands = brands
-   }
+    }
 
     setDevices(devices: DeviceDto[]) {
         this._devices = devices

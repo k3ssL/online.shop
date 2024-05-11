@@ -7,4 +7,3 @@ export interface DeviceDto {
     rating: number
     img: string
 }
-

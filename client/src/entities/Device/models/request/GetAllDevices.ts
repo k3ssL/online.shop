@@ -1,4 +1,4 @@
 export interface GetAllDevices {
-    brandId?:number
-    typeId?:number
+    brandId?: number
+    typeId?: number
 }
